@@ -35,4 +35,19 @@ console.log(filip instanceof Person); // Result: True
 Person.prototype.calcAge = function () {
   console.log(2024 - this.birthYear);
 };
-console.log(filip.calcAge());
+filip.calcAge(); // Result: 29
+gabriela.calcAge(); // Result: 25
+benito.calcAge(); // Result: 62
+
+//Check if same Method is instance of Person
+console.log(Person.prototype.isPrototypeOf(filip)); // Result: True
+console.log(filip.__proto__ === Person.prototype); // Is the same
+
+// Also can use property with prototypes
+Person.prototype.placeOfBird = 'Republic of Macedonia';
+console.log(filip.placeOfBird); // Result:Republic of Macedonia
+console.log(gabriela.placeOfBird); // Result:Republic of Macedonia
+
+// Checking
+console.log(filip.hasOwnProperty('firstName')); // Result: True
+console.log(filip.hasOwnProperty('placeOfBird')); // Result: False
