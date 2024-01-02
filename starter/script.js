@@ -12,7 +12,7 @@ const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
 
-  // Create Method
+  // Create Method - NEVER DO THIS
   this.calcAge = function () {
     console.log(2024 - this.birthYear);
   };
@@ -26,3 +26,13 @@ console.log(benito); // Result: Person {firstName: 'Benito', birthYear: 1962}
 
 // Check if same object is instance of Person
 console.log(filip instanceof Person); // Result: True
+
+///////////////////////////////////////////
+
+// Prototypes
+
+// Prototypes - Correct way of write Methods
+Person.prototype.calcAge = function () {
+  console.log(2024 - this.birthYear);
+};
+console.log(filip.calcAge());
