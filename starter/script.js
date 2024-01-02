@@ -51,3 +51,12 @@ console.log(gabriela.placeOfBird); // Result:Republic of Macedonia
 // Checking
 console.log(filip.hasOwnProperty('firstName')); // Result: True
 console.log(filip.hasOwnProperty('placeOfBird')); // Result: False
+
+////////////////////////////////////////
+
+// Prototypal ingeritance on Built-in Objects
+
+console.log(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 5, 6, 9, 3];
+console.log(arr.__proto__);
