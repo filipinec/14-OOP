@@ -179,16 +179,96 @@
 
 ///////////////////////////////////////
 
-// Object.create
+// // Object.create
 
-const PersonProto = {
-  calcAge() {
-    console.log(2024 - this.birthYear);
-  },
-};
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2024 - this.birthYear);
+//   },
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
 
-const gabriela = Object.create(PersonProto);
-console.log(gabriela);
-gabriela.name = 'Gabriela';
-gabriela.birthYear = '1999';
-gabriela.calcAge(); // Result: 25
+// const gabriela = Object.create(PersonProto);
+// console.log(gabriela);
+// gabriela.init('gabriela', 1999);
+// gabriela.calcAge(); // Result: 25
+
+// const filip = Object.create(PersonProto);
+// filip.init('filip', 1995);
+// filip.calcAge();
+// console.log(filip); // Result: 29
+
+////////////////////////////////////////////
+
+// ES6 Classes
+
+// //class declaration
+// class PersonCl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+//   calcAge() {
+//     console.log(2024 - this.birthYear);
+//   }
+//   greet() {
+//     console.log(`Hey ${this.firstName}`);
+//   }
+// }
+
+// const filip = new PersonCl('Filip', 1995);
+// console.log(filip); //Result: PersonCl {firstName: 'Filip', birthYear: 1995}
+// filip.calcAge(); // Result: 29
+// filip.greet(); //Result: Hey Filip
+
+// // Coding Challenge #1
+
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
+// Car.prototype.accelerate = function () {
+//   this.speed = this.speed + 10;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
+// Car.prototype.brake = function () {
+//   this.speed = this.speed - 5;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
+
+// const bmw = new Car('BMW', 120);
+// const mercedes = new Car('Mercedes', 95);
+// bmw.accelerate(); //Result: BMW is going at 130 km/h
+// bmw.accelerate(); //Result: BMW is going at 140 km/h
+// bmw.brake(); //Result: BMW is going at 135 km/h
+// bmw.accelerate(); //Result: BMW is going at 145 km/h
+
+// mercedes.accelerate(); //Result: Mercedes is going at 105 km/h
+// mercedes.brake(); //Result: Mercedes is going at 100 km/h
+// mercedes.brake(); //Result: Mercedes is going at 95 km/h
+
+class CarCl {
+  constuctor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }}
+  accelerate() {
+    this.speed = this.speed + 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+  brake() {
+    this.speed = this.speed - 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+}
+const ford = new CarCl('Ford', 120);
+console.log(ford.speedUS);
+ford.accelerate();
+ford.accelerate();
+ford.brake();
