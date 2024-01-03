@@ -1,11 +1,11 @@
 'use strict';
 
-// //  Construction Function and the new Operator
+//  Construction Function and the new Operator
 
-// // 1. New {} is created
-// // 2. Function is called, this = {}
-// // 3. {} linked to prototype
-// // 4. function automatically return {}
+// 1. New {} is created
+// 2. Function is called, this = {}
+// 3. {} linked to prototype
+// 4. function automatically return {}
 
 // const Person = function (firstName, birthYear) {
 //   // Instance Property
@@ -82,23 +82,113 @@
 
 /////////////////////////////////////////////////////
 
-// ES6 Classes
+// // ES6 Classes
 
-//class declaration
-class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-  }
+// //class declaration
+// class PersonCl {
+//   constructor(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   }
+//   calcAge() {
+//     console.log(2024 - this.birthYear);
+//   }
+//   greet() {
+//     console.log(`Hey ${this.firstName}`);
+//   }
+// }
+
+// const filip = new PersonCl('Filip', 1995);
+// console.log(filip); //Result: PersonCl {firstName: 'Filip', birthYear: 1995}
+// filip.calcAge(); // Result: 29
+// filip.greet(); //Result: Hey Filip
+
+////////////////////////////////////////////////////
+
+// // Setters and Getters
+
+// const account = {
+//   owner: 'jonas',
+//   movements: [200, 530, 120, 300],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+
+// account.latest = 50;
+// console.log(account.latest); //Result: 300
+// console.log(account.movements);
+
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+//   calcAge() {
+//     console.log(2024 - this.birthYear);
+//   }
+//   greet() {
+//     console.log(`Hey ${this._fullName}`);
+//   }
+
+//   //Set a property that arleady exists
+//   get age() {
+//     return 2024 - this.birthYear;
+//   }
+//   set fullName(name) {
+//     if (name.includes(' ')) {
+//       this._fullName = name;
+//     } else {
+//       alert(`${name} is not a full name`);
+//     }
+//   }
+
+//   get username() {
+//     return this.fullName;
+//   }
+
+//   // Static method
+//   static hey() {
+//     console.log('Hey there!');
+//   }
+// }
+
+// const filip = new PersonCl('Filip Tasevski', 1995);
+// const gabriela = new PersonCl('Gabriela', 1999);
+// console.log(filip.age); // Result: 29
+// console.log(filip); //Result: PersonCl {firstName: 'Filip Tasevski', birthYear: 1995}
+// filip.calcAge(); // Result: 29
+// filip.greet(); //Result: Hey Filip Tasevski
+// PersonCl.hey(); // Result: Hey there!
+// /////////////////////////////////////////////////////////////////////
+
+// // Static Methods
+// const Person = function (firstName, birthYear) {};
+
+// // Create Static function
+// Person.hey = function () {
+//   console.log('Hey there!!');
+// };
+
+// //Calling Static function
+// Person.hey();
+
+///////////////////////////////////////
+
+// Object.create
+
+const PersonProto = {
   calcAge() {
     console.log(2024 - this.birthYear);
-  }
-  greet() {
-    console.log(`Hey ${this.firstName}`);
-  }
-}
+  },
+};
 
-const filip = new PersonCl('Filip', 1995);
-console.log(filip); //Result: PersonCl {firstName: 'Filip', birthYear: 1995}
-filip.calcAge(); // Result: 29
-filip.greet(); //Result: Hey Filip
+const gabriela = Object.create(PersonProto);
+console.log(gabriela);
+gabriela.name = 'Gabriela';
+gabriela.birthYear = '1999';
+gabriela.calcAge(); // Result: 25
