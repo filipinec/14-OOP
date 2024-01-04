@@ -325,10 +325,52 @@
 
 ///////////////////////////////////////////////
 
+// Another Class Example
+
+// 1). Public fields
+// 2). Private fields
+// 3). Public methods
+// 4). Private methods
+
 class Account {
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
+    this.locale = navigator.language;
+    //Protected property
+    this._movements = [];
+    this._pin = pin;
+
+    console.log(`Thanks for opening new account, Mr. ${owner}`);
+  }
+
+  // Public interface
+  getMovements() {
+    return this._movements;
+  }
+
+  deposit(val) {
+    this._movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+  // Intrernal function
+  _approveLoan(val) {
+    if (this._pin === 1111) {
+      return true;
+    }
+  }
+  requestLoan(val) {
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
   }
 }
+const acc1 = new Account('Jonas', 'EUR', 1111);
+console.log(acc1);
+acc1.deposit(250);
+acc1.withdraw(140);
+acc1.requestLoan(1000);
+console.log(acc1.getMovements());
