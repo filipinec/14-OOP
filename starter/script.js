@@ -80,6 +80,33 @@
 // mercedes.brake(); //Result: Mercedes is going at 100 km/h
 // mercedes.brake(); //Result: Mercedes is going at 95 km/h
 
+// // Coding Chellenge #3
+
+// // 1)
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
+// // Link to prototypes
+// EV.prototype = Object.create(Car.prototype);
+// const tesla = new EV('Tesla', 120, 23);
+
+// // 2).
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+
+// // 3).
+// EV.prototype.accelerate = function () {
+//   this.speed = this.speed + 20;
+//   this.charge = this.charge - 1;
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with charge of ${this.charge}%`
+//   );
+// };
+// console.log(tesla);
+// tesla.accelerate();
+
 /////////////////////////////////////////////////////
 
 // // ES6 Classes
@@ -103,6 +130,29 @@
 // filip.calcAge(); // Result: 29
 // filip.greet(); //Result: Hey Filip
 
+// // Inheritance Between Classes: ES6 Classes
+// class StudentCL extends PersonCl {
+//   constructor(fullName, birthYear, course) {
+//     // Always needs to happen first!
+//     super(fullName, birthYear);
+//     this.course = course; // It's not necessary to write
+//   }
+//   introduce() {
+//     console.log(`My name is ${this.firstName} and I study ${this.course}`);
+//   }
+//   // Оverwrites calcAge
+//   calcAge() {
+//     console.log(
+//       `I'm ${2024 - this.birthYear} and study ${this.course} and I feel like ${
+//         2024 - this.birthYear + 50
+//       } `
+//     );
+//   }
+// }
+
+// const martha = new StudentCL('Martha Jones', 1995, 'Computer Science');
+// martha.introduce();
+// martha.calcAge();
 ////////////////////////////////////////////////////
 
 // // Setters and Getters
@@ -275,4 +325,10 @@
 
 ///////////////////////////////////////////////
 
-// Codding Challenge #3
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+  }
+}
