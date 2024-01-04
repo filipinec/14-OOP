@@ -80,32 +80,36 @@
 // mercedes.brake(); //Result: Mercedes is going at 100 km/h
 // mercedes.brake(); //Result: Mercedes is going at 95 km/h
 
-// // Coding Chellenge #3
+//////////////////////////////////////////////////////
 
-// // 1)
-// const EV = function (make, speed, charge) {
-//   Car.call(this, make, speed);
-//   this.charge = charge;
-// };
-// // Link to prototypes
-// EV.prototype = Object.create(Car.prototype);
-// const tesla = new EV('Tesla', 120, 23);
+// Coding Chellenge #3
 
-// // 2).
-// EV.prototype.chargeBattery = function (chargeTo) {
-//   this.charge = chargeTo;
-// };
+// 1)
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+// Link to prototypes
+EV.prototype = Object.create(Car.prototype);
+const tesla = new EV('Tesla', 120, 23);
 
-// // 3).
-// EV.prototype.accelerate = function () {
-//   this.speed = this.speed + 20;
-//   this.charge = this.charge - 1;
-//   console.log(
-//     `${this.make} is going at ${this.speed} km/h, with charge of ${this.charge}%`
-//   );
-// };
-// console.log(tesla);
-// tesla.accelerate();
+// 2).
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+// 3).
+EV.prototype.accelerate = function () {
+  this.speed = this.speed + 20;
+  this.charge = this.charge - 1;
+  console.log(
+    `${this.make} is going at ${this.speed} km/h, with charge of ${this.charge}%`
+  );
+};
+console.log(tesla);
+tesla.accelerate();
+
+// Coding Chellenge #4
 
 /////////////////////////////////////////////////////
 
@@ -325,57 +329,60 @@
 
 ///////////////////////////////////////////////
 
-// Another Class Example
+// // Encapsulation - Private Class Fields and Chaining
 
-// 1). Public fields
-// 2). Private fields
-// 3). Public methods
-// 4). Private methods
+// // 1). Public fields
+// // 2). Private fields
+// // 3). Public methods
+// // 4). Private methods
+// class Account {
+//   // 1) Public fields (instances)
+//   locale = navigator.language;
+//   // 2). Private fields
+//   #movements = [];
+//   #pin; // Because we use in constructor
 
-class Account {
-  // 1) Public fields (instances)
-  locale = navigator.language;
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     //Protected property
+//     this.#pin = pin;
 
-  // 2). Private fields
-  #movements = [];
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    //Protected property
-    this._pin = pin;
-    // this._movements = [];
-    // this.locale = navigator.language;
-
-    console.log(`Thanks for opening new account, Mr. ${owner}`);
-  }
-
-  // Public interface
-  getMovements() {
-    return this.#movements;
-  }
-
-  deposit(val) {
-    this.#movements.push(val);
-  }
-  withdraw(val) {
-    this.deposit(-val);
-  }
-  // Intrernal function
-  _approveLoan(val) {
-    if (this._pin === 1111) {
-      return true;
-    }
-  }
-  requestLoan(val) {
-    if (this._approveLoan(val)) {
-      this.deposit(val);
-      console.log(`Loan approved`);
-    }
-  }
-}
-const acc1 = new Account('Jonas', 'EUR', 1111);
-console.log(acc1);
-acc1.deposit(250);
-acc1.withdraw(140);
-acc1.requestLoan(1000);
-console.log(acc1.getMovements());
+//     console.log(`Thanks for opening new account, Mr. ${owner}`);
+//   }
+//   // 3). Public methods
+//   getMovements() {
+//     return this.#movements;
+//   }
+//   deposit(val) {
+//     this.#movements.push(val);
+//     return this;
+//   }
+//   withdraw(val) {
+//     this.deposit(-val);
+//     return this;
+//   }
+//   // Intrernal function
+//   requestLoan(val) {
+//     if (this.#approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved`);
+//       return this;
+//     }
+//   }
+//   // 4). Private methods
+//   #approveLoan(val) {
+//     if (this._pin === 1111) {
+//       return true;
+//     }
+//   }
+// }
+// const acc1 = new Account('Jonas', 'EUR', 1111);
+// console.log(acc1);
+// acc1.deposit(250);
+// acc1.withdraw(140);
+// acc1.requestLoan(1000);
+// console.log(acc1.getMovements());
+// // Chaining - must use - return this
+// acc1.deposit(500).withdraw(322).deposit(800).deposit(800);
+// console.log(acc1.getMovements());
