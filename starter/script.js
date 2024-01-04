@@ -203,72 +203,58 @@
 
 ////////////////////////////////////////////
 
-// ES6 Classes
+// // Coding Chellenge #2
 
-// //class declaration
-// class PersonCl {
-//   constructor(firstName, birthYear) {
-//     this.firstName = firstName;
-//     this.birthYear = birthYear;
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
 //   }
-//   calcAge() {
-//     console.log(2024 - this.birthYear);
+//   accelerate() {
+//     this.speed = this.speed + 10;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
 //   }
-//   greet() {
-//     console.log(`Hey ${this.firstName}`);
+//   brake() {
+//     this.speed = this.speed - 5;
+//     console.log(`${this.make} is going at ${this.speed} km/h`);
+//   }
+//   get speedUS() {
+//     return this.speed / 1.6;
+//   }
+//   set speedUS(speed) {
+//     this.speed = speed * 1.6;
 //   }
 // }
+// const ford = new CarCl('Ford', 120);
+// console.log(ford.speedUS);
+// ford.accelerate(); // Result: Ford is going at 130 km/h
+// ford.accelerate(); // Result: Ford is going at 140 km/h
+// ford.brake(); // Result: Ford is going at 135 km/h
+// ford.speedUS = 50;
+// console.log(ford.speedUS);
+// console.log(ford);
 
-// const filip = new PersonCl('Filip', 1995);
-// console.log(filip); //Result: PersonCl {firstName: 'Filip', birthYear: 1995}
-// filip.calcAge(); // Result: 29
-// filip.greet(); //Result: Hey Filip
+///////////////////////////////////////////////
 
-// // Coding Challenge #1
+// Inheritance Between "Classses" : Construction function
 
-// const Car = function (make, speed) {
-//   this.make = make;
-//   this.speed = speed;
-// };
-// Car.prototype.accelerate = function () {
-//   this.speed = this.speed + 10;
-//   console.log(`${this.make} is going at ${this.speed} km/h`);
-// };
-// Car.prototype.brake = function () {
-//   this.speed = this.speed - 5;
-//   console.log(`${this.make} is going at ${this.speed} km/h`);
-// };
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+Person.prototype.calcAge = function () {
+  console.log(2024 - this.birthYear);
+};
 
-// const bmw = new Car('BMW', 120);
-// const mercedes = new Car('Mercedes', 95);
-// bmw.accelerate(); //Result: BMW is going at 130 km/h
-// bmw.accelerate(); //Result: BMW is going at 140 km/h
-// bmw.brake(); //Result: BMW is going at 135 km/h
-// bmw.accelerate(); //Result: BMW is going at 145 km/h
+const Student = function (firstName, birthYear, course) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+  this.course = course;
+};
 
-// mercedes.accelerate(); //Result: Mercedes is going at 105 km/h
-// mercedes.brake(); //Result: Mercedes is going at 100 km/h
-// mercedes.brake(); //Result: Mercedes is going at 95 km/h
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
 
-class CarCl {
-  constuctor(make, speed) {
-    this.make = make;
-    this.speed = speed;
-  }}
-  accelerate() {
-    this.speed = this.speed + 10;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
-  brake() {
-    this.speed = this.speed - 5;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-  }
-  get speedUS() {
-    return this.speed / 1.6;
-  }
-}
-const ford = new CarCl('Ford', 120);
-console.log(ford.speedUS);
-ford.accelerate();
-ford.accelerate();
-ford.brake();
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
