@@ -82,34 +82,107 @@
 
 //////////////////////////////////////////////////////
 
-// Coding Chellenge #3
+// Coding Chellenge #2
 
-// 1)
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge;
-};
-// Link to prototypes
-EV.prototype = Object.create(Car.prototype);
-const tesla = new EV('Tesla', 120, 23);
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  accelerate() {
+    this.speed = this.speed + 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+  brake() {
+    this.speed = this.speed - 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+const ford = new CarCl('Ford', 120);
+console.log(ford.speedUS);
+ford.accelerate(); // Result: Ford is going at 130 km/h
+ford.accelerate(); // Result: Ford is going at 140 km/h
+ford.brake(); // Result: Ford is going at 135 km/h
+ford.speedUS = 50;
+console.log(ford.speedUS);
+console.log(ford);
 
-// 2).
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
+/////////////////////////////////////////
+// // Coding Chellenge #3
 
-// 3).
-EV.prototype.accelerate = function () {
-  this.speed = this.speed + 20;
-  this.charge = this.charge - 1;
-  console.log(
-    `${this.make} is going at ${this.speed} km/h, with charge of ${this.charge}%`
-  );
-};
-console.log(tesla);
-tesla.accelerate();
+// // 1)
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
+// // Link to prototypes
+// EV.prototype = Object.create(Car.prototype);
+// const tesla = new EV('Tesla', 120, 23);
+
+// // 2).
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+
+// // 3).
+// EV.prototype.accelerate = function () {
+//   this.speed = this.speed + 20;
+//   this.charge = this.charge - 1;
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with charge of ${this.charge}%`
+//   );
+// };
+// console.log(tesla);
+// tesla.accelerate();
+
+// /////////////////////////////////////////////
 
 // Coding Chellenge #4
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+  accelerate() {
+    this.speed = this.speed + 20;
+    this.#charge = this.#charge - 2;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+  brake() {
+    this.speed = this.speed - 5;
+    this.#charge = this.#charge + 1;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+console.log(rivian);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .brake()
+  .brake();
 
 /////////////////////////////////////////////////////
 
@@ -256,37 +329,6 @@ tesla.accelerate();
 // console.log(filip); // Result: 29
 
 ////////////////////////////////////////////
-
-// // Coding Chellenge #2
-
-// class CarCl {
-//   constructor(make, speed) {
-//     this.make = make;
-//     this.speed = speed;
-//   }
-//   accelerate() {
-//     this.speed = this.speed + 10;
-//     console.log(`${this.make} is going at ${this.speed} km/h`);
-//   }
-//   brake() {
-//     this.speed = this.speed - 5;
-//     console.log(`${this.make} is going at ${this.speed} km/h`);
-//   }
-//   get speedUS() {
-//     return this.speed / 1.6;
-//   }
-//   set speedUS(speed) {
-//     this.speed = speed * 1.6;
-//   }
-// }
-// const ford = new CarCl('Ford', 120);
-// console.log(ford.speedUS);
-// ford.accelerate(); // Result: Ford is going at 130 km/h
-// ford.accelerate(); // Result: Ford is going at 140 km/h
-// ford.brake(); // Result: Ford is going at 135 km/h
-// ford.speedUS = 50;
-// console.log(ford.speedUS);
-// console.log(ford);
 
 ///////////////////////////////////////////////
 
