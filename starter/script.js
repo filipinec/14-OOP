@@ -236,25 +236,43 @@
 
 ///////////////////////////////////////////////
 
-// Inheritance Between "Classses" : Construction function
+// // Inheritance Between "Classses" : Construction function
 
-const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
-Person.prototype.calcAge = function () {
-  console.log(2024 - this.birthYear);
-};
+// // 1 st class
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
 
-const Student = function (firstName, birthYear, course) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-  this.course = course;
-};
+// // Person function
+// Person.prototype.calcAge = function () {
+//   console.log(2024 - this.birthYear);
+// };
 
-Student.prototype.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+// // 2 st class - using Person class in student class
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
 
-const mike = new Student('Mike', 2020, 'Computer Science');
-mike.introduce();
+// // Linking prototypes Student to Person
+// Student.prototype = Object.create(Person.prototype);
+// // Linking prototypes Person to Student
+// Person.prototype = Object.create(Student.prototype);
+
+// // Student Function
+// Student.prototype.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
+
+// const filip = new Person('Filip', 1995);
+// const mike = new Student('Mike', 1999, 'Computer Science');
+// mike.introduce();
+// console.log(mike);
+// console.log(filip);
+// mike.calcAge();
+// filip.introduce();
+
+///////////////////////////////////////////////
+
+// Codding Challenge #3
