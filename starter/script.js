@@ -170,19 +170,18 @@ class EVCl extends CarCl {
     );
     return this;
   }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    console.log(
+      `${this.make} is on charger and it is charge on ${this.#charge}%`
+    );
+    return this;
+  }
 }
 
-const rivian = new EVCl('Rivian', 120, 23);
+const rivian = new EVCl('Rivian', 120, 20);
 console.log(rivian);
-rivian
-  .accelerate()
-  .accelerate()
-  .accelerate()
-  .accelerate()
-  .accelerate()
-  .brake()
-  .brake()
-  .brake();
+rivian.accelerate().accelerate().chargeBattery(50).brake().brake().brake();
 
 /////////////////////////////////////////////////////
 
